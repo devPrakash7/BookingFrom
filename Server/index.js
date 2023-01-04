@@ -1,4 +1,3 @@
-
 const  express = require('express')
 const app = express()
 const port = process.env.PORT || 5000
@@ -12,7 +11,7 @@ app.use(express.json());
 app.use(require("./Router/rout"));
 
 // mongodb connected
-mongoose.connect('mongodb://localhost:27017/EmployeeForm', {
+mongoose.connect('mongodb://localhost:27017/SignupAndLogin', {
     
   useNewUrlParser: true 
 
@@ -20,7 +19,8 @@ mongoose.connect('mongodb://localhost:27017/EmployeeForm', {
 
     console.log("connected");
 
-}).catch(() => {
+}).catch(() => {cls
+    
 
     console.log("not connected")
 });

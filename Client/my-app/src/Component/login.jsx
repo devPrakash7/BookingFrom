@@ -1,4 +1,3 @@
-
 import './login.css'
 import {  Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,12 +11,14 @@ const Login  = ({updateUserDataLC}) => {
 
     const [values, setValues] = useState({
        email:"",
-       phone:"",
-    })
-  
+       password:"",
+    });
+
+
     const handlesumbit= (e) => {
 
         const{name,value}=e.target
+        
         setValues({
             ...values,
             [name]:value
@@ -25,13 +26,16 @@ const Login  = ({updateUserDataLC}) => {
     }
     const loginData = ()=>{
 
+    
       axios.post("http://localhost:5000/login",values)
       .then(res =>{
          alert(res.data.message)
          updateUserDataLC(res.data.user) 
-         navigate("/")
+         
      }         
       )
+      navigate("/");
+
    }
   
   return (
@@ -45,13 +49,13 @@ const Login  = ({updateUserDataLC}) => {
             onChange={handlesumbit}
              />
 
-            <input type="text" placeholder='Enter your phone' value={values.phone} name='phone'
+            <input type="password" placeholder='Enter your password' value={values.password} name='password'
             onChange={handlesumbit}
             />
 
-          <button type='sumbit' onClick={loginData}>Login</button>
+          <button type='sumbit' onClick={loginData} >Login</button>
 
-          <span>Did't have an account <Link to='/'>Home</Link></span>
+          <span>Go to the BookingFrom <Link to='/'>BookingFrom</Link></span>
         </form>
     </formcontainer>
     </>
